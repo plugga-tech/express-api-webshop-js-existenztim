@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const OrderModel = require('../../models/order-model');
 // ta bort?
 router.get('/', function(req, res, next) {
   res.send('Hello from orders Endpoint!');
@@ -12,7 +12,7 @@ router.post('/add', function(req, res, next){
 });
 
 // HÄMTA ALLA ORDERS
-router.get('/all', function (req, res, next){
-    res.send('Hello from orders/all Endpoint!');
+router.get('/all', async (req, res, next) =>{
+    const order = await OrderModel.find()
 });
 module.exports = router;

@@ -57,15 +57,15 @@ GET http://localhost:3000/api/products/641864fe6aeb398c6d50166c
 
 ###
 
-// SKAPA PRODUKT
+// SKAPA PRODUKT *Skillnad för VG
 POST http://localhost:3000/api/products/add
 Content-Type: application/json
 
 {
-  "name": "Produkt 1",
-  "description": "Beskrivning av produkt 1",
-  "price": 100, 
-  "lager": 10
+  "name": "Produkt 2",
+  "description": "Beskrivning av produkt 2",
+  "price": 150, 
+  "lager": 3
 }
 
 ###
