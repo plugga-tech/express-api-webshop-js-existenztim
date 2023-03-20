@@ -57,7 +57,7 @@ GET http://localhost:3000/api/products/641864fe6aeb398c6d50166c
 
 ###
 
-// SKAPA PRODUKT
+// SKAPA PRODUKT *Skillnad för VG
 POST http://localhost:3000/api/products/add
 Content-Type: application/json
 

@@ -45,6 +45,8 @@ Content-Type: application/json
 // API ENDPOINTS PRODUCTS
 //
 
+// HÄMTA ALLA PRODUKTER
+
 # @name getProducts
 GET http://localhost:3000/api/products
 
