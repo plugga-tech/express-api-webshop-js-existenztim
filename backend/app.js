@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/users');
@@ -13,7 +14,7 @@ const ordersRouter = require ('./routes/api/orders');
 async function init(){
     try {
     const options = {useNewUrlParser: true, useUnifiedTopology: true}
-    await mongoose.connect('mongodb://127.0.0.1:27017/tim-sundell', options); 
+    await mongoose.connect(process.env.MONGODB_URI_LOCAL, options); 
     console.log('Mongoose connected successful!');
 } catch(error) {
     console.error(error)

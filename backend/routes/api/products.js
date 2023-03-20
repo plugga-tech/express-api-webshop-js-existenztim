@@ -1,18 +1,39 @@
 var express = require('express');
 var router = express.Router();
-
+const ProductModel = require('../../models/product-model');
 // HÄMTA ALLA PRODUKTER
-router.get('/', function(req, res, next) {
-  res.send('Hello from products Endpoint!');
+router.get('/', async (req, res, next) => {
+  const product = await ProductModel.find()
+
+  try {
+    res.status(200).json(product);
+  } catch (err){
+    console.error(err);
+    res.status(500).send("Server Error")
+  }
 });
 
 // HÄMTA SPECIFIK PRODUKT
-router.get('/:productId', function(req,res, next){
-    res.send('Hello from products/:productId Endpoint!');
+router.get('/:id', async (req, res) => {
+    const product = await ProductModel.findById({_id: req.params.id})
+    try {
+        res.status(200).json(product)
+    } catch (err){
+        console.error(err);
+        res.status(500).send("Server Error")
+    }
 })
 
 // SKAPA PRODUKT
-router.post('/add', function (req, res, next){
-    res.send('Hello from products/add Endpoint!');
+router.post('/add', async (req, res, next) => {
+    const product = new ProductModel(req.body)
+    await product.save();
+
+    try {
+        res.status(201).json(product);
+    } catch(err){
+        console.error(err);
+        res.status(500).send("Server Error")
+    }
 })
 module.exports = router;

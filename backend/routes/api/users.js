@@ -9,7 +9,6 @@ router.get('/', async (req, res) => {
 
   try {
   res.status(200).json(user);
-  // res.send("test");
 
   } catch (err){
       console.error(err);
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-// HÄMTA SPECIFIK USER // SKICKA HELA OBJEKTET ska det vara post?
+// HÄMTA SPECIFIK USER // SKICKA HELA OBJEKTET (Post av säkerhetsskäl)
 router.post('/', async (req, res, next) => {
   const { id } = req.body;
   const user = await UserModel.findById({_id: id})

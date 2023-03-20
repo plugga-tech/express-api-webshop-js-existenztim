@@ -11,6 +11,7 @@ router.post('/add', function(req, res, next){
     res.send('Hello from orders/add Endpoint!');
 });
 
+// HÄMTA ALLA ORDERS
 router.get('/all', function (req, res, next){
     res.send('Hello from orders/all Endpoint!');
 });
