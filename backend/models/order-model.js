@@ -4,8 +4,8 @@ const OrderSchema = mongoose.Schema({
     
     //vilken användare
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        type: String,
+        required: true,
     },
 
     //vad har den beställt
@@ -13,9 +13,13 @@ const OrderSchema = mongoose.Schema({
         {
             productId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'product'
+                ref: 'product',
+                required: true,
             },
-            quantity: Number //ska dra av detta i lager hos ProductSchema
+            quantity: {
+                type: Number,
+                required: true 
+            }//ska dra av detta i lager hos ProductSchema
         }
     ]
 
