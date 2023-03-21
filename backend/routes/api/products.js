@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
         res.status(200).json(product)
     } catch (err){
         console.error(err);
-        res.status(500).send("Server Error")
+        res.status(500).json({ msg: err });
     }
 })
 
@@ -32,7 +32,7 @@ router.post('/add', async (req, res, next) => {
         res.status(201).json(product);
     } catch(err){
         console.error(err);
-        res.status(500).send("Server Error")
+        res.status(500).json({ msg: err });
     }
 })
 module.exports = router;

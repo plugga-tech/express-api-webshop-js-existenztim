@@ -1,9 +1,10 @@
 let loginForm = document.getElementById("loginForm");
 const greeting = document.getElementById("userGreeting");
 let publishedBaseUrl = "http://localhost:3000/api/"
+let loggedInUser = localStorage.getItem("username");
+
 
 export const generateLogoutForm = () =>{
-    localStorage.removeItem("username");
     loginForm.innerHTML= /*html*/`
         <h2>You are now logged in</h2>
         <button id="logoutUserBtn">Logout</button>
@@ -30,13 +31,14 @@ export const generateLoginForm = () =>{
     `;
     
     saveUserBtn.addEventListener("click", () => {
+        
         alert("User has been created");
     });
 
     loginUserBtn.addEventListener("click", async () => {
         let loginEmail = document.getElementById("loginEmail");
         let loginPassword = document.getElementById("loginPassword");
-        
+
         let loginUser = {
             email: loginEmail.value,
             password: loginPassword.value
@@ -51,7 +53,6 @@ export const generateLoginForm = () =>{
         });
     
         const data = await response.json();
-        console.log(data)
         if (data.name) {
             greeting.innerText = "";
             greeting.innerHTML += /*html*/` 

@@ -79,7 +79,7 @@ POST http://localhost:3000/api/orders/add
 Content-Type: application/json
 
 {
-  "user": "{{getUsers.response.body.$[0].id}}",
+  "user": "64183668f0b5ed84e9747246",
       "products": [
     {
       "productId": "641864fe6aeb398c6d50166c",
@@ -97,5 +97,10 @@ Content-Type: application/json
 
 // HÄMTA ALLA ORDERS
 GET http://localhost:3000/api/orders/all/
+
+###
+
+// TÖM ORDERS
+DELETE  http://localhost:3000/api/orders/all/
 
 ###

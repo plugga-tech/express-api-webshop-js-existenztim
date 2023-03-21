@@ -1,28 +1,23 @@
 const mongoose = require('mongoose');
 
-const OrderSchema = mongoose.Schema({
-    
-    //vilken användare
+const OrderSchema = new mongoose.Schema({
     user: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
     },
 
-    //vad har den beställt
     products: [
-        {
-            productId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'product',
-                required: true,
-            },
-            quantity: {
-                type: Number,
-                required: true 
-            }//ska dra av detta i lager hos ProductSchema
+      {
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'product'
+        },
+        quantity: {
+          type: Number,
+          required: true
         }
+      }
     ]
-
-})
-
+  });
 module.exports = mongoose.model('order', OrderSchema)

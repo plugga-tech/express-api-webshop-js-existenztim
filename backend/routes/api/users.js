@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
   } catch (err){
       console.error(err);
-      res.status(500).send("Server Error")
+      res.status(500).json({ msg: err });
   }
 })
 
@@ -25,7 +25,7 @@ router.post('/', async (req, res, next) => {
     res.status(200).json(user);
   } catch (err){
     console.error(err);
-    res.status(500).send("Server Error")
+    res.status(500).json({ msg: err });
   }
 });
 
@@ -41,7 +41,7 @@ router.post('/add', async (req, res, next) => {
     res.status(201).json(user);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Server Error")
+    res.status(500).json({ msg: err });
   }
 })
 
@@ -63,7 +63,7 @@ router.post('/login', async (req, res, next) => {
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send("Server Error");
+    res.status(500).json({ msg: err });
   }
 });
 

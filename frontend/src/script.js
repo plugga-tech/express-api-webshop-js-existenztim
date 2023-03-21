@@ -1,23 +1,17 @@
 import {generateLoginForm, generateLogoutForm} from './script/userForm.js';
-// testLog();
 
 let publishedBaseUrl = "http://localhost:3000/api/"
 let productList = document.getElementById("productList");
-const userList = document.getElementById("userList");
-const saveUserBtn = document.getElementById("saveUserBtn");
-const newUser = document.getElementById("newUser");
-const newUserPassword = document.getElementById("newUserPassword");
 let loggedInUser = localStorage.getItem("username");
+
 
 const init = () => {
     
     if(loggedInUser) {
-        userGreeting.innerText += ` ${loggedInUser}`;
         generateLogoutForm();
     } else {
         generateLoginForm();
     }
-
     fetchProducts();
 }
 
@@ -48,6 +42,18 @@ const printProducts = (products) => {
             </ul>
         </div>`
     }).join(''); //since it's an array, removes the ","
-    
+    creatBtnsEventlistener();
 }
+
+const creatBtnsEventlistener = () => {
+    let AddBtns = document.querySelectorAll('[id$="-btn"]');
+    AddBtns.forEach(button => button.addEventListener("click", () => {
+        if(loggedInUser !== null){
+            alert("added to cart!"); //make it actually add to cart
+        } else {
+            alert("You must be logged in to add to cart!");
+        }
+    }))
+}
+
 init();
