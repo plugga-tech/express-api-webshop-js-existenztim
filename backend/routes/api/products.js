@@ -3,13 +3,12 @@ var router = express.Router();
 const ProductModel = require('../../models/product-model');
 // HÄMTA ALLA PRODUKTER
 router.get('/', async (req, res, next) => {
-  const product = await ProductModel.find()
-
   try {
+    const product = await ProductModel.find()
     res.status(200).json(product);
   } catch (err){
     console.error(err);
-    res.status(500).send("Server Error")
+    res.status(500).send([])
   }
 });
 
@@ -20,7 +19,7 @@ router.get('/:id', async (req, res) => {
         res.status(200).json(product)
     } catch (err){
         console.error(err);
-        res.status(500).send("Server Error")
+        res.status(500).json({ msg: err });
     }
 })
 
@@ -33,7 +32,7 @@ router.post('/add', async (req, res, next) => {
         res.status(201).json(product);
     } catch(err){
         console.error(err);
-        res.status(500).send("Server Error")
+        res.status(500).json({ msg: err });
     }
 })
 module.exports = router;

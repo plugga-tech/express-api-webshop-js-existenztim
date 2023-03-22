@@ -36,19 +36,27 @@
     font-size: 3.2em;
     line-height: 1.1;
   }
-  
+  #cart{
+    position: fixed;
+    top: 30px;
+    right: 10%;
+  }
   
   h2,h3,h4,h5,h6 {
     font-size: 1.2em;
     line-height: 1.1;
   }
   
-  #userList {
-    max-height: 200px;
-    padding: 0.2rem 1rem 0.2rem 1rem;
-    overflow-y: scroll;
-    background-color: #1a1a1a;
-    border-radius: 15px;
+  #productList {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+  }
+
+  #productList ul{
+    list-style-type: none;
   }
   
   #userGreeting {
