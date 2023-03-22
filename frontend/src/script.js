@@ -2,12 +2,10 @@ import {generateLoginForm, generateLogoutForm} from './script/userForm.js';
 
 let publishedBaseUrl = "http://localhost:3000/api/"
 let productList = document.getElementById("productList");
-let loggedInUser = localStorage.getItem("username");
-
 
 const init = () => {
     
-    if(loggedInUser) {
+    if(localStorage.getItem("username")) {
         generateLogoutForm();
     } else {
         generateLoginForm();
@@ -48,7 +46,7 @@ const printProducts = (products) => {
 const creatBtnsEventlistener = () => {
     let AddBtns = document.querySelectorAll('[id$="-btn"]');
     AddBtns.forEach(button => button.addEventListener("click", () => {
-        if(loggedInUser !== null){
+        if(localStorage.getItem("username")){
             alert("added to cart!"); //make it actually add to cart
         } else {
             alert("You must be logged in to add to cart!");

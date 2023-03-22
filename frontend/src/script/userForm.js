@@ -1,14 +1,13 @@
 let loginForm = document.getElementById("loginForm");
 const greeting = document.getElementById("userGreeting");
 let publishedBaseUrl = "http://localhost:3000/api/"
-let loggedInUser = localStorage.getItem("username");
 
-
-export const generateLogoutForm = () =>{
+export const generateLogoutForm = () => {
     loginForm.innerHTML= /*html*/`
         <h2>You are now logged in</h2>
         <button id="logoutUserBtn">Logout</button>
     `
+    let logoutUserBtn = document.getElementById("logoutUserBtn");
     logoutUserBtn.addEventListener("click", () => {
         localStorage.removeItem("username");
         greeting.innerText = "You have been logged out."
@@ -16,12 +15,13 @@ export const generateLogoutForm = () =>{
     });
 }
 
-export const generateLoginForm = () =>{
+export const generateLoginForm = () => {
     loginForm.innerHTML= /*html*/`
     <p>New user? Create an account!</p>
     
-    <input type="text" id="newUser" placeholder="username"/>
-    <input type="password" id="newUserPassword" placeholder="password"/>
+    <input type="text" id="newUserName" placeholder="username"/>
+    <input type="email" id="newEmail" placeholder="email"/>
+    <input type="password" id="newPassword" placeholder="password"/>
     <button id="saveUserBtn">Create user</button>
 
     <p>Or login here:</p>
@@ -30,9 +30,38 @@ export const generateLoginForm = () =>{
     <button id="loginUserBtn">Login</button>
     `;
     
-    saveUserBtn.addEventListener("click", () => {
-        
-        alert("User has been created");
+    saveUserBtn.addEventListener("click", async () => {  
+        let newUserName = document.getElementById("newUserName");
+        let newEmail = document.getElementById("newEmail");
+        let newPassword = document.getElementById("newPassword");
+
+        let newUser = {
+            name: newUserName.value,
+            email: newEmail.value,
+            password: newPassword.value
+        }
+
+        try {
+            const response = await fetch(`${publishedBaseUrl}users/add`,{
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newUser)
+            });
+    
+            const data = await response.json();
+            if (data.name) {
+                greeting.innerText = "";
+                greeting.innerHTML += /*html*/` 
+                    <p>User ${data.name} was succesfully created!<p>
+                `;
+            }
+        }
+        catch(err) {
+            console.log(err)
+            greeting.innerText = err;
+        }
     });
 
     loginUserBtn.addEventListener("click", async () => {
@@ -43,7 +72,6 @@ export const generateLoginForm = () =>{
             email: loginEmail.value,
             password: loginPassword.value
         }
-        console.log(loginUser);
         const response = await fetch(`${publishedBaseUrl}users/login`, {
             method:"POST",
             headers: {
@@ -58,7 +86,7 @@ export const generateLoginForm = () =>{
             greeting.innerHTML += /*html*/` 
                 <p>You are logged in as ${data.name}<p>
             `;
-            localStorage.setItem("username", data.name);
+            localStorage.setItem("username", data.name); // Sets the username in local storage
             generateLogoutForm(); 
         } 
         else {
