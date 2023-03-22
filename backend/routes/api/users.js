@@ -6,7 +6,6 @@ const CryptoJS = require('crypto-js');
 // HÄMTA ALLA USERS // SKICKA INTE MED LÖSENORD // BARA ID, NAMN + EMAIL PÅ ALLA USERS
 router.get('/', async (req, res) => { 
   const user = await UserModel.find({}, {name:1, email:1})
-
   try {
   res.status(200).json(user);
 

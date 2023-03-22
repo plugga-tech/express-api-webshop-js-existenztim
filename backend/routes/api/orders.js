@@ -3,10 +3,10 @@ var router = express.Router();
 const OrderModel = require('../../models/order-model');
 const ProductModel = require('../../models/product-model');
 
-// ta bort?
-router.get('/', function(req, res, next) {
-  res.send('Hello from orders Endpoint!');
-});
+
+// router.get('/', function(req, res, next) {
+//   res.send('Hello from orders Endpoint!');
+// });
 
 // SKAPA ORDER FÖR EN SPECIFIK USER // PRODUCTS ÄR EN ARRAY MOTSVARANDE INNEHÅLLET I KUNDVAGN
 router.post('/add', async (req, res, next) => {

@@ -2,6 +2,27 @@ let loginForm = document.getElementById("loginForm");
 const greeting = document.getElementById("userGreeting");
 let publishedBaseUrl = "http://localhost:3000/api/"
 
+export const generateUsers = () => {
+    const userList = document.getElementById("userList");
+    try {
+        fetch(`${publishedBaseUrl}users`)
+        .then(response => response.json())
+        .then(users => {
+            userList.innerHTML = users.map(user => {
+                return /*html */`
+                <ul id="${user.name}-container">
+                    <li>Username : ${user.name}</li>
+                    <li>email : ${user.email}</li>
+                </ul>
+            
+            `
+            }).join('');
+        });   
+    } catch(err){
+        greeting.innerText = err;
+    }
+};
+
 export const generateLogoutForm = () => {
     loginForm.innerHTML= /*html*/`
         <h2>You are now logged in</h2>
@@ -59,7 +80,6 @@ export const generateLoginForm = () => {
             }
         }
         catch(err) {
-            console.log(err)
             greeting.innerText = err;
         }
     });
