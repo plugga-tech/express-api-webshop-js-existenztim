@@ -14,7 +14,7 @@ const ordersRouter = require ('./routes/api/orders');
 async function init(){
     try {
     const options = {useNewUrlParser: true, useUnifiedTopology: true}
-    await mongoose.connect(process.env.MONGODB_URI_LOCAL, options); 
+    await mongoose.connect('mongodb://127.0.0.1:27017/Tim-Sundell', options); 
     console.log('Mongoose connected successful!');
 } catch(error) {
     console.error(error)

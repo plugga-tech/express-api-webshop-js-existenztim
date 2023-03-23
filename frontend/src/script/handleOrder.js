@@ -1,10 +1,14 @@
-import { productCart } from "./handleProducts";
+const greeting = document.getElementById("userGreeting");
+const cartIcon = document.querySelector("#cart span");
 let publishedBaseUrl = "http://localhost:3000/api/";
 
 export const sendOrder = async () => {
+    const cartToSend = JSON.parse(localStorage.getItem("productCart"));
+    const userId = parseInt(localStorage.getItem("userid"));
+
     let userOrder = {
-        user: "64183668f0b5ed84e9747246", //behöver först fetcha user
-        products: productCart
+        user: userId, 
+        products: cartToSend
       }
 
     if(localStorage.getItem("username")){
@@ -14,15 +18,17 @@ export const sendOrder = async () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(newUser)
+                body: JSON.stringify(userOrder)
             });
     
             const data = await response.json();
-            if (data.name) {
+            if (data._id) {
                 greeting.innerText = "";
                 greeting.innerHTML += /*html*/` 
-                    <p>User ${data.name} was succesfully created!<p>
+                    <p>Order: ${data._id} was succesfully sent!<p>
                 `;
+                alert("We have recived your order.");
+                cartIcon.innerHTML = 0;
             }
         } catch(err) {
             greeting.innerText = err;
