@@ -1,8 +1,8 @@
 import {generateLoginForm, generateLogoutForm, generateUsers} from './script/userForm.js';
-import {printProducts, productCart} from './script/handleProducts.js';
+import {printProducts} from './script/handleProducts.js';
+//import { sendOrder } from './script/handleOrder.js';
 
 let publishedBaseUrl = "http://localhost:3000/api/"
-
 
 const init = () => {
     if(localStorage.getItem("username")) {

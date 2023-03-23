@@ -8,6 +8,7 @@ export const generateUsers = () => {
         fetch(`${publishedBaseUrl}users`)
         .then(response => response.json())
         .then(users => {
+            console.log(users);
             userList.innerHTML = users.map(user => {
                 return /*html */`
                 <ul id="${user.name}-container">
@@ -32,6 +33,9 @@ export const generateLogoutForm = () => {
     logoutUserBtn.addEventListener("click", () => {
         localStorage.removeItem("username");
         greeting.innerText = "You have been logged out."
+        if(localStorage.getItem("productCart")){
+            localStorage.removeItem("productCart"); //empty cart on logout
+        }
         generateLoginForm();
     });
 }
@@ -101,7 +105,9 @@ export const generateLoginForm = () => {
         });
     
         const data = await response.json();
+        // kalla på en function i script.js istället för det som kommer, där kan du spara data._id i localstorage
         if (data.name) {
+            console.log(data);
             greeting.innerText = "";
             greeting.innerHTML += /*html*/` 
                 <p>You are logged in as ${data.name}<p>
