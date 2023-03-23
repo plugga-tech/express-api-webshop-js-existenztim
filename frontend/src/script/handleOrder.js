@@ -1,20 +1,22 @@
+import { init } from "../script.js";
+
+
 const greeting = document.getElementById("userGreeting");
 const cartIcon = document.querySelector("#cart span");
 let publishedBaseUrl = "http://localhost:3000/api/";
 
 export const sendOrder = async () => {
     const cartToFilter = JSON.parse(localStorage.getItem("productCart"));
-    console.log("ofilterad array: ",cartToFilter);
-    const filteredCart = cartToFilter.map(product => ({ productId: product._id, quantity: product.quantity }))
+    const filteredCart = cartToFilter.map(product => ({ 
+        productId: product._id, 
+        quantity: product.quantity 
+    }))
+
     const userId = (localStorage.getItem("userid"));
-    console.log(userId);
-    console.log("filterad array: ",filteredCart)
     let userOrder = {
         user: userId, 
         products: filteredCart
       }
-    console.log(userOrder)
-
     
 if(localStorage.getItem("username") && filteredCart.length > 0){
         try {
@@ -39,6 +41,7 @@ if(localStorage.getItem("username") && filteredCart.length > 0){
         } catch(err) {
             greeting.innerText = err;
         }
+        init();
     } else if(filteredCart.length = 0){
         alert("You have no products in the cart")
     } else {

@@ -6,7 +6,7 @@ const orderBtn = document.querySelector(".cart-container button");
 orderBtn.addEventListener("click", sendOrder);
 let publishedBaseUrl = "http://localhost:3000/api/"
 
-const init = () => {
+export const init = () => {
     if(localStorage.getItem("username")) {
         generateLogoutForm();
     } else {
