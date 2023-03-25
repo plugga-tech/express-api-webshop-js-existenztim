@@ -13,7 +13,7 @@ POST http://localhost:3000/api/users/
 Content-Type: application/json
 
 {
-  "id": "// ID PÅ EN SPECIFIK USER"
+  "id": "641c5d7b81a7240a23b54854"
 }
 
 ###
@@ -23,9 +23,9 @@ POST http://localhost:3000/api/users/add
 Content-Type: application/json
 
 {
-  "name": "Test Testsson",
-  "email": "test@mail.com",
-  "password": "test"
+  "name": "tim",
+  "email": "tim@mail.com",
+  "password": "tim"
 }
 
 ###
@@ -67,7 +67,7 @@ Content-Type: application/json
   "price": 100,
   "lager": 10,
   "category": "// ID PÅ EN SPECIFIK KATEGORI",
-  "token": "1234key1234"
+  "token": "1234prod1234"
 }
 
 ###
@@ -87,7 +87,7 @@ Content-Type: application/json
 
 {
   "name": "Kategori 1",
-  "token": "1234key1234"
+  "token": "1234cat1234"
 }
 
 ###
@@ -136,7 +136,7 @@ POST http://localhost:3000/api/orders/user
 Content-Type: application/json
 
 {
-    "user": "// USER ID FÖR DEN SOM SKA VISA ORDERS"
+    "user": "641c5d7b81a7240a23b54854"
 }
 ###
 
@@ -145,7 +145,7 @@ POST http://localhost:3000/api/orders/user
 Content-Type: application/json
 
 {
-    "user": "// USER ID FÖR DEN SOM SKA VISA ORDERS",
-    "token": "1234key1234"
+    "user": "641c5d7b81a7240a23b54854",
+    "token": "1234prod1234"
 }
 ###

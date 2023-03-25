@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 require('dotenv').config();
 
-const productKey = process.env.CREATE_TOKEN;
+const productKey = process.env.PROD_TOKEN;
 const ProductModel = require('../../models/product-model');
 
 // HÄMTA ALLA PRODUKTER

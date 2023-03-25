@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const OrderModel = require('../../models/order-model');
 const ProductModel = require('../../models/product-model');
+const UserModel = require('../../models/user-model');
 require('dotenv').config();
 
 let apiKey = process.env.API_KEY;
+let orderKey = process.env.PROD_TOKEN;
 
 // router.get('/', function(req, res, next) {
 //   res.send('Hello from orders Endpoint!');
@@ -45,14 +47,35 @@ router.get('/all/:api', async (req, res, next) =>{
   }
 });
 
-// TÖM ORDERS (Endast under utvecklingsfas)
-router.delete('/all', async (req, res, next) =>{
-  try {
-    const order = await OrderModel.deleteMany()
-    res.status(200).json(order)
-  } catch (err){
+
+router.post('/user', async (req, res, next) =>{
+  const token = req.body.token;
+  if (!token) {
+    return res.status(401).json({ msg: 'Unauthorized' });
+  }
+
+  else if (token !== orderKey) {
+    return res.status(401).json({ msg: 'Unauthorized' });
+  }
+
+ const userId = req.body.user;
+ try {
+   const user = await UserModel.findById(userId);
+   const userOrders = await OrderModel.find({ user: userId });
+   res.status(200).json(userOrders);
+ } catch (err) {
     console.error(err);
     res.status(500).json({ msg: err });
-  }
+ }
 });
+// TÖM ORDERS (Endast under utvecklingsfas)
+// router.delete('/all', async (req, res, next) =>{
+//   try {
+//     const order = await OrderModel.deleteMany()
+//     res.status(200).json(order)
+//   } catch (err){
+//     console.error(err);
+//     res.status(500).json({ msg: err });
+//   }
+// });
 module.exports = router;
