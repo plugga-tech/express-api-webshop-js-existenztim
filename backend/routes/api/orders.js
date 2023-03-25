@@ -1,8 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const OrderModel = require('../../models/order-model');
 const ProductModel = require('../../models/product-model');
+require('dotenv').config();
 
+let apiKey = process.env.API_KEY;
 
 // router.get('/', function(req, res, next) {
 //   res.send('Hello from orders Endpoint!');
@@ -25,8 +27,11 @@ router.post('/add', async (req, res, next) => {
     res.status(500).json({ msg: err });
   }
 });
-// HÄMTA ALLA ORDERS
-router.get('/all', async (req, res, next) =>{
+// HÄMTA ALLA ORDERS, KEY MÅSTE ANGES FÖR ATT FÅ TILLGÅNG TILL ORDERS
+router.get('/all/:api', async (req, res, next) =>{
+  const api = req.params.api;
+
+  if (api === apiKey) {
     try {
       const order = await OrderModel.find()
       res.status(200).json(order)
@@ -34,6 +39,10 @@ router.get('/all', async (req, res, next) =>{
       console.error(err);
       res.status(500).json({ msg: err });
     }
+  }
+  else {
+    res.status(401).json({msg: 'Unauthorized API request'})
+  }
 });
 
 // TÖM ORDERS (Endast under utvecklingsfas)
