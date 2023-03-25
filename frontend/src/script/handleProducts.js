@@ -1,5 +1,8 @@
 let productCart = [];
 let productList = document.getElementById("productList");
+let publishedBaseUrl = "http://localhost:3000/api/"
+const greeting = document.getElementById("userGreeting");
+const cartIcon = document.querySelector("#cart span");
 
 export const printProducts = (products) => {
     productList.innerHTML = products.map(product => {
@@ -21,11 +24,39 @@ export const printProducts = (products) => {
 
 const creatBtnsEventlistener = () => {
     let AddBtns = document.querySelectorAll('[id$="-btn"]');
+
     AddBtns.forEach(button => button.addEventListener("click", () => {
+        const productId = button.dataset.productId;
         if(localStorage.getItem("username")){
-            alert("added to cart!"); //make it actually add to cart
-            let productId = button.dataset.productId;
-            console.log(productId); 
+            try {
+                fetch(`${publishedBaseUrl}products/${productId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.hasOwnProperty('quantity')) {
+                        data.quantity = 1;
+                    }
+                    
+                    let productExists = false;
+                    productCart.forEach(product => {
+                        if(product._id === data._id) {
+                            productExists = true;
+                            product.quantity += 1;
+                        }
+                    });
+
+                    if(!productExists) {
+                        productCart.push(data);
+                    }
+
+                    cartIcon.innerHTML = parseInt(cartIcon.innerHTML) + 1;
+                    localStorage.setItem('productCart', JSON.stringify(productCart));
+                    
+                    alert(`product no:${productId} added to cart!`); //lazy dev :) 
+                });
+            } catch(err){
+                greeting.innerText = err;
+            }
+
         } else {
             alert("You must be logged in to add to cart!");
         }

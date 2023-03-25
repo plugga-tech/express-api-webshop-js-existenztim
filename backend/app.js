@@ -10,6 +10,7 @@ const indexRouter = require('./routes/api/index');
 const usersRouter = require('./routes/api/users');
 const productsRouter = require('./routes/api/products');
 const ordersRouter = require ('./routes/api/orders');
+const categoriesRouter = require('./routes/api/categories');
 
 async function init(){
     try {
@@ -35,5 +36,6 @@ app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/categories', categoriesRouter);
 
 module.exports = app;

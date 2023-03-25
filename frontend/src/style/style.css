@@ -36,8 +36,11 @@
     font-size: 3.2em;
     line-height: 1.1;
   }
-  #cart{
+  .cart-container{
     position: fixed;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     top: 30px;
     right: 10%;
   }
@@ -47,6 +50,10 @@
     line-height: 1.1;
   }
   
+  .hero {
+    max-width: 1000px;
+    text-align: center;
+  }
   #productList {
     display: flex;
     justify-content: center;
@@ -60,15 +67,32 @@
   }
   
   #userGreeting {
-    max-width: 300px;
-    overflow-x: scroll;
     padding: 0.2rem 1rem 0.2rem 1rem;
     background-color: #1a1a1a;
     border-radius: 15px;
+    margin: auto;
+    max-width: 300px;
   }
   
   #userGreeting p{
    font-size: 1rem;
+  }
+
+  #userList {
+    max-height: 200px;
+    overflow-y: scroll;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    margin: 2rem;
+  }
+
+  ul[id$="-container"] {
+    display: flex;
+    flex-direction: row;
+    background-color:#242424;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
   }
   
   .logo {
@@ -86,10 +110,6 @@
   
   .card {
     padding: 2em;
-  }
-  
-  .read-the-docs {
-    color: #888;
   }
   
   button {
