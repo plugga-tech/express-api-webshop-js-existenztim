@@ -1,10 +1,12 @@
 import {generateLoginForm, generateLogoutForm, generateUsers} from './script/userForm.js';
 import {printProducts} from './script/handleProducts.js';
-//import { sendOrder } from './script/handleOrder.js';
+import { sendOrder } from './script/handleOrder.js';
 
+const orderBtn = document.querySelector(".cart-container button");
+orderBtn.addEventListener("click", sendOrder);
 let publishedBaseUrl = "http://localhost:3000/api/"
 
-const init = () => {
+export const init = () => {
     if(localStorage.getItem("username")) {
         generateLogoutForm();
     } else {

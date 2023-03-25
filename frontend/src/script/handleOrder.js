@@ -1,33 +1,50 @@
-import { productCart } from "./handleProducts";
+import { init } from "../script.js";
+
+
+const greeting = document.getElementById("userGreeting");
+const cartIcon = document.querySelector("#cart span");
 let publishedBaseUrl = "http://localhost:3000/api/";
 
 export const sendOrder = async () => {
-    let userOrder = {
-        user: "64183668f0b5ed84e9747246", //behöver först fetcha user
-        products: productCart
-      }
+    const cartToFilter = JSON.parse(localStorage.getItem("productCart"));
+    const filteredCart = cartToFilter.map(product => ({ 
+        productId: product._id, 
+        quantity: product.quantity 
+    }))
 
-    if(localStorage.getItem("username")){
+    const userId = (localStorage.getItem("userid"));
+    let userOrder = {
+        user: userId, 
+        products: filteredCart
+      }
+    
+if(localStorage.getItem("username") && filteredCart.length > 0){
         try {
-            const response = await fetch(`${publishedBaseUrl}users/add`,{
+            const response = await fetch(`${publishedBaseUrl}orders/add`,{
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(newUser)
+                body: JSON.stringify(userOrder)
             });
     
             const data = await response.json();
-            if (data.name) {
+            if (data._id) {
                 greeting.innerText = "";
                 greeting.innerHTML += /*html*/` 
-                    <p>User ${data.name} was succesfully created!<p>
+                    <p>Order: ${data._id} was succesfully sent!<p>
                 `;
+                alert("We have recived your order.");
+                cartIcon.innerHTML = 0;
+                localStorage.removeItem("productCart");
             }
         } catch(err) {
             greeting.innerText = err;
         }
+        init();
+    } else if(filteredCart.length = 0){
+        alert("You have no products in the cart")
     } else {
-        alert("You must be logged in to send an order!")
+        alert("You must be logged in the send an order!")
     }
 }

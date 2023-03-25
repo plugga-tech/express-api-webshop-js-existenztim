@@ -4,7 +4,16 @@ const ProductSchema = mongoose.Schema({
     name: String,
     description: String,
     price: Number,
-    lager: Number //ev ändra till stock så vi slipper svengelska
+    lager: Number,
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'category',
+    },
+    token: {
+        type: String,
+        require: true,
+    }
+
 })
 
 module.exports = mongoose.model('product', ProductSchema) 

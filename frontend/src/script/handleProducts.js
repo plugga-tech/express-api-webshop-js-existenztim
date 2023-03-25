@@ -1,4 +1,4 @@
-export let productCart = [];
+let productCart = [];
 let productList = document.getElementById("productList");
 let publishedBaseUrl = "http://localhost:3000/api/"
 const greeting = document.getElementById("userGreeting");
@@ -32,7 +32,21 @@ const creatBtnsEventlistener = () => {
                 fetch(`${publishedBaseUrl}products/${productId}`)
                 .then(response => response.json())
                 .then(data => {
-                    productCart.push(data);
+                    if (!data.hasOwnProperty('quantity')) {
+                        data.quantity = 1;
+                    }
+                    
+                    let productExists = false;
+                    productCart.forEach(product => {
+                        if(product._id === data._id) {
+                            productExists = true;
+                            product.quantity += 1;
+                        }
+                    });
+
+                    if(!productExists) {
+                        productCart.push(data);
+                    }
 
                     cartIcon.innerHTML = parseInt(cartIcon.innerHTML) + 1;
                     localStorage.setItem('productCart', JSON.stringify(productCart));
