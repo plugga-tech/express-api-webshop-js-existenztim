@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const categoryKey = process.env.CAT_TOKEN;
 const CategoryModel = require('../../models/category-model');
-
+// HÄMTA ALLA KATEGORIER
 router.get('/', async (req, res) =>{
    try {
     const category = await CategoryModel.find()
@@ -15,6 +15,7 @@ router.get('/', async (req, res) =>{
    }
   });
 
+// SKAPA KATEGORI, KEY MÅSTE ANGES // UTAN KEY SVARA 401
 router.post('/add', async (req, res) => {
     const token = req.body.token;
     if (token !== categoryKey) {

@@ -1,4 +1,4 @@
-// import { saveUserId } from './script.js';
+//import { init } from "../script.js";
 let loginForm = document.getElementById("loginForm");
 const greeting = document.getElementById("userGreeting");
 let publishedBaseUrl = "http://localhost:3000/api/"
