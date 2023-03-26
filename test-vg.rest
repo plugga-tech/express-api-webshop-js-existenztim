@@ -13,7 +13,7 @@ POST http://localhost:3000/api/users/
 Content-Type: application/json
 
 {
-  "id": "641c5d7b81a7240a23b54854"
+  "id": "641f954d9981f494459751c9"
 }
 
 ###
@@ -62,11 +62,11 @@ POST http://localhost:3000/api/products/add
 Content-Type: application/json
 
 {
-  "name": "Produkt 2",
-  "description": "Beskrivning av produkt 1",
+  "name": "Produkt 27",
+  "description": "Beskrivning av produkt 7",
   "price": 100,
   "lager": 10,
-  "category": "// ID PÅ EN SPECIFIK KATEGORI",
+  "category": "641f84df47bc744ee3822403",
   "token": "1234prod1234"
 }
 

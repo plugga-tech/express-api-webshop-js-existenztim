@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 require('dotenv').config();
 
-const categoryKey = process.env.CREATE_TOKEN;
+const categoryKey = process.env.CAT_TOKEN;
 const CategoryModel = require('../../models/category-model');
 
 router.get('/', async (req, res) =>{
@@ -23,7 +23,7 @@ router.post('/add', async (req, res) => {
     try {
         const category = new CategoryModel(req.body);
         await category.save();
-        return res.status(200).send(category);
+        return res.status(201).send(category);
     } catch(err) {
         console.error(err);
         return res.status(500).send(err);
