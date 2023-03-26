@@ -13,7 +13,7 @@ POST http://localhost:3000/api/users/
 Content-Type: application/json
 
 {
-  "id": "// ID PÅ EN SPECIFIK USER"
+  "id": "641f954d9981f494459751c9"
 }
 
 ###
@@ -23,9 +23,9 @@ POST http://localhost:3000/api/users/add
 Content-Type: application/json
 
 {
-  "name": "Test Testsson",
-  "email": "test@mail.com",
-  "password": "test"
+  "name": "tim",
+  "email": "tim@mail.com",
+  "password": "tim"
 }
 
 ###
@@ -53,7 +53,7 @@ GET http://localhost:3000/api/products
 ###
 
 // HÄMTA SPECIFIK PRODUKT
-GET http://localhost:3000/api/products/ // ID PÅ EN SPECIFIK PRODUKT
+GET http://localhost:3000/api/products/6420466b1694cd8e84073d49
 
 ###
 
@@ -62,18 +62,18 @@ POST http://localhost:3000/api/products/add
 Content-Type: application/json
 
 {
-  "name": "Produkt 2",
-  "description": "Beskrivning av produkt 1",
-  "price": 100,
-  "lager": 10,
-  "category": "// ID PÅ EN SPECIFIK KATEGORI",
-  "token": "1234key1234"
+  "name": "hallo 2",
+  "description": "Beskrivning av produkt med kategori",
+  "price": 200,
+  "lager": 20,
+  "category": "642044e672e0764e073e1f81",
+  "token": "1234prod1234"
 }
 
 ###
 
 // HÄMTA ALLA PRODUKTER FÖR EN SPECIFIK KATEGORI
-GET http://localhost:3000/api/products/category/ // ID PÅ EN SPECIFIK KATEGORI
+GET http://localhost:3000/api/products/category/642044e672e0764e073e1f81
 ###
 
 //
@@ -86,8 +86,8 @@ POST http://localhost:3000/api/categories/add
 Content-Type: application/json
 
 {
-  "name": "Kategori 1",
-  "token": "1234key1234"
+  "name": "Kategori",
+  "token": "1234cat1234"
 }
 
 ###
@@ -102,12 +102,12 @@ GET http://localhost:3000/api/categories
 //
 
 // HÄMTA ALLA ORDERS, KEY MÅSTE ANGES FÖR ATT FÅ TILLGÅNG TILL ORDERS
-GET http://localhost:3000/api/orders/all/ // API TOKEN
+GET http://localhost:3000/api/orders/all/apitest123
 
 ###
 
 // HÄMTA ALLA ORDER, FEL KEY // SKALL MISSLYCKAS
-GET http://localhost:3000/api/orders/all/ // TEST MED FEL TOKEN
+GET http://localhost:3000/api/orders/all/wrong123
 
 ###
 
@@ -136,7 +136,7 @@ POST http://localhost:3000/api/orders/user
 Content-Type: application/json
 
 {
-    "user": "// USER ID FÖR DEN SOM SKA VISA ORDERS"
+    "user": "641c5d7b81a7240a23b54854"
 }
 ###
 
@@ -145,7 +145,7 @@ POST http://localhost:3000/api/orders/user
 Content-Type: application/json
 
 {
-    "user": "// USER ID FÖR DEN SOM SKA VISA ORDERS",
-    "token": "1234key1234"
+    "user": "64204182b72955fedf7be3e9",
+    "token": "1234prod1234"
 }
 ###

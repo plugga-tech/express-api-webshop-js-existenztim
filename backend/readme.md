@@ -4,4 +4,5 @@ Dokumentera tydligt om det är några speciella instruktioner för att starta pr
 statuskoder som används:
 200 = ok
 201 = created
-500 = "generelt server fel"
+401 = unathorized
+500 = "generellt server fel"

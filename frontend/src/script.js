@@ -1,9 +1,14 @@
 import {generateLoginForm, generateLogoutForm, generateUsers} from './script/userForm.js';
 import {printProducts} from './script/handleProducts.js';
 import { sendOrder } from './script/handleOrder.js';
+import { fetchUserDetails } from './script/myPage.js';
 
 const orderBtn = document.querySelector(".cart-container button");
 orderBtn.addEventListener("click", sendOrder);
+
+const myPageBtn = document.querySelector(".cart-container button:nth-of-type(2)");
+myPageBtn.addEventListener("click", fetchUserDetails);
+
 let publishedBaseUrl = "http://localhost:3000/api/"
 
 export const init = () => {
