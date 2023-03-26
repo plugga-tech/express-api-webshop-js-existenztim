@@ -51,7 +51,7 @@ router.post('/login', async (req, res, next) => {
   try {
     let user = await UserModel.findOne({ email });
     if (!user) {
-      res.status(400).json({ msg: "Invalid credentials" });
+      res.status(401).json({ msg: "Invalid credentials" });
     }
     //decrypt password
     let decryptPassword = CryptoJS.AES.decrypt(user.password, "salt key").toString(CryptoJS.enc.Utf8);

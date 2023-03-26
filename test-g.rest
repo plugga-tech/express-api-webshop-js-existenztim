@@ -95,8 +95,8 @@ Content-Type: application/json
 ###
 
 
-// HÄMTA ALLA ORDERS
-GET http://localhost:3000/api/orders/all/
+// HÄMTA ALLA ORDERS, ej aktuell, en mer utvecklad version ligger i test-vg-rest
+//GET http://localhost:3000/api/orders/all/
 
 ###
 

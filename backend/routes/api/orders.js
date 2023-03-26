@@ -29,6 +29,7 @@ router.post('/add', async (req, res, next) => {
     res.status(500).json({ msg: err });
   }
 });
+
 // HÄMTA ALLA ORDERS, KEY MÅSTE ANGES FÖR ATT FÅ TILLGÅNG TILL ORDERS
 router.get('/all/:api', async (req, res, next) =>{
   const api = req.params.api;
@@ -47,7 +48,7 @@ router.get('/all/:api', async (req, res, next) =>{
   }
 });
 
-
+// HÄMTA ORDERS FÖR EN USER // SKALL MISSLYCKAS = INGEN KEY  // SVARA MED 401
 router.post('/user', async (req, res, next) =>{
   const token = req.body.token;
   if (!token) {
@@ -68,6 +69,7 @@ router.post('/user', async (req, res, next) =>{
     res.status(500).json({ msg: err });
  }
 });
+
 // TÖM ORDERS (Endast under utvecklingsfas)
 // router.delete('/all', async (req, res, next) =>{
 //   try {
